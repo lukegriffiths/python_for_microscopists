@@ -39,10 +39,10 @@ print(type(img))
 img.show() 
 
 # prints format of image 
-print(img.format) 
+print(img.format) # JPEG
   
 # prints mode of image 
-print(img.mode) 
+print(img.mode) # RGB
 
 #PIL is not by default numpy array but can convert PIL image to numpy array. 
 img1 = np.asarray(img)
