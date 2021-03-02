@@ -11,8 +11,10 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 img = io.imread("images/BSE_Google_noisy.jpg")
-#plt.imshow(img, cmap=plt.cm.gray, interpolation='nearest')  
+plt.imshow(img, cmap=plt.cm.gray, interpolation='nearest')  
+plt.show()
 
+#%%
 #Let's clean the noise using edge preserving filter.
 #As mentioned in previous tutorial, my favorite is NLM
 
@@ -27,13 +29,14 @@ denoise_img = denoise_nl_means(float_img, h=1.15 * sigma_est, fast_mode=False,
                                patch_size=5, patch_distance=3, multichannel=True)
                            
 denoise_img_as_8byte = img_as_ubyte(denoise_img)
-#plt.imshow(denoise_img_as_8byte, cmap=plt.cm.gray, interpolation='nearest')
+plt.imshow(denoise_img_as_8byte, cmap=plt.cm.gray, interpolation='nearest')
+plt.show()
 
 #Let's look at the histogram to see howmany peaks we have. 
 #Then pick the regions for our histogram segmentation.
-
-#plt.hist(denoise_img_as_8byte.flat, bins=100, range=(0,100))  #.flat returns the flattened numpy array (1D)
-
+#%%
+plt.hist(denoise_img_as_8byte.flat, bins=100, range=(0,100))  #.flat returns the flattened numpy array (1D)
+plt.show()
 
 segm1 = (denoise_img_as_8byte <= 57)
 segm2 = (denoise_img_as_8byte > 57) & (denoise_img_as_8byte <= 110)
@@ -49,8 +52,10 @@ all_segments[segm1] = (1,0,0)
 all_segments[segm2] = (0,1,0)
 all_segments[segm3] = (0,0,1)
 all_segments[segm4] = (1,1,0)
-#plt.imshow(all_segments)
+plt.imshow(all_segments)
+plt.show()
 
+#%%
 #Lot of yellow dots, red dots and stray dots. how to clean
 #We can use binary opening and closing operations. Open takes care of isolated pixels within the window
 #Closing takes care of isolated holes within the defined window
@@ -77,3 +82,4 @@ all_segments_cleaned[segm3_closed] = (0,0,1)
 all_segments_cleaned[segm4_closed] = (1,1,0)
 
 plt.imshow(all_segments_cleaned)  #All the noise should be cleaned now
+plt.show()
