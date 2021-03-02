@@ -53,17 +53,21 @@ img = img_as_float(io.imread("images/denoising/noisy_img.jpg"))
 
 from scipy import ndimage as nd
 gaussian_img = nd.gaussian_filter(img, sigma=3)
-plt.imsave("images/gaussian.jpg", gaussian_img)
-
+plt.imsave("images/gaussianjpg", gaussian_img)
+plt.imshow(gaussian_img)
+plt.show()
 
 median_img = nd.median_filter(img, size=3)
 plt.imsave("images/median.jpg", median_img)
+plt.imshow(median_img)
+plt.show()
 
 gaussian_img = nd.gaussian_filter(img, sigma=3)
 plt.imsave("images/gaussian.jpg", gaussian_img)
+plt.imshow(gaussian_img)
+plt.show()
 
-
-##### NLM#####
+##### NLM#####.
 
 sigma_est = np.mean(estimate_sigma(img, multichannel=True))
 
