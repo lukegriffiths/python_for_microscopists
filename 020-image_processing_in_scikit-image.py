@@ -144,11 +144,11 @@ entropy_img = entropy(img, disk(3))
 #Once you have the entropy iamge you can apply a threshold to segment the image
 #If you're not sure which threshold works fine, skimage has a way for you to check all 
 
-"""
+
 from skimage.filters import try_all_threshold
 fig, ax = try_all_threshold(entropy_img, figsize=(10, 8), verbose=False)
 plt.show()
-"""
+
 
 #Now let us test Otsu segmentation. 
 from skimage.filters import threshold_otsu
